@@ -35,6 +35,7 @@ use tracing::{info, warn};
 
 use crate::consensus::{
     ConsensusProposal, FedimintConsensus, HbbftConsensusOutcome, HbbftSerdeConsensusOutcome,
+    MaybeEpochMessage,
 };
 use crate::db::LastEpochKey;
 use crate::fedimint_core::encoding::Encodable;
@@ -71,6 +72,15 @@ const NUM_EPOCHS_REJOIN_AHEAD: u64 = 10;
 pub enum EpochMessage {
     Continue(Message<PeerId>),
     RejoinRequest(u64),
+}
+
+impl MaybeEpochMessage for EpochMessage {
+    fn message_epoch(&self) -> Option<u64> {
+        match self {
+            EpochMessage::Continue(msg) => msg.message_epoch(),
+            EpochMessage::RejoinRequest(_) => None,
+        }
+    }
 }
 
 type EpochStep = Step<Vec<SerdeConsensusItem>, PeerId>;
