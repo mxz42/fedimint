@@ -37,7 +37,7 @@ use crate::logging::{LOG_NET_PEER, LOG_NET_PEER_DKG};
 use crate::multiplexed::PeerConnectionMultiplexer;
 use crate::net::connect::{parse_host_port, Connector, TlsConfig};
 use crate::net::peers::NetworkConfig;
-use crate::{ReconnectPeerConnections, TlsTcpConnector};
+use crate::{MaybeEpochMessage, ReconnectPeerConnections, TlsTcpConnector};
 
 pub mod distributedgen;
 pub mod io;
@@ -768,7 +768,15 @@ pub async fn connect<T>(
     task_group: &mut TaskGroup,
 ) -> PeerConnections<T>
 where
-    T: std::fmt::Debug + Clone + Serialize + DeserializeOwned + Unpin + Send + Sync + 'static,
+    T: std::fmt::Debug
+        + Clone
+        + Serialize
+        + DeserializeOwned
+        + MaybeEpochMessage
+        + Unpin
+        + Send
+        + Sync
+        + 'static,
 {
     let connector = TlsTcpConnector::new(certs).into_dyn();
     ReconnectPeerConnections::new(network, connector, task_group)
