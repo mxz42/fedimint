@@ -1450,6 +1450,7 @@
 <a href="#1450" id="1450">1450</a>
 <a href="#1451" id="1451">1451</a>
 <a href="#1452" id="1452">1452</a>
+<a href="#1453" id="1453">1453</a>
 </pre><pre class="rust"><code><span class="kw">use </span>std::collections::{BTreeMap, BTreeSet, HashMap, HashSet};
 <span class="kw">use </span>std::ffi::OsString;
 <span class="kw">use </span>std::hash::Hash;
@@ -1462,9 +1463,10 @@
 <span class="kw">use </span>db::{ECashUserBackupSnapshot, EcashBackupKey, NonceKeyPrefix};
 <span class="kw">use </span>fedimint_api::cancellable::{Cancellable, Cancelled};
 <span class="kw">use </span>fedimint_api::config::{
-    scalar, ConfigGenParams, DkgPeerMsg, DkgRunner, ModuleConfigResponse, ModuleGenParams,
-    ServerModuleConfig, TypedServerModuleConfig, TypedServerModuleConsensusConfig,
+    scalar, ConfigGenParams, DkgPeerMsg, DkgRunner, ModuleGenParams, ServerModuleConfig,
+    TypedServerModuleConfig,
 };
+<span class="kw">use </span>fedimint_api::config::{ModuleConfigResponse, TypedServerModuleConsensusConfig};
 <span class="kw">use </span>fedimint_api::core::{ModuleInstanceId, ModuleKind};
 <span class="kw">use </span>fedimint_api::db::{Database, DatabaseTransaction};
 <span class="kw">use </span>fedimint_api::encoding::{Decodable, Encodable};

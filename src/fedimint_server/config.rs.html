@@ -800,6 +800,8 @@
 <a href="#800" id="800">800</a>
 <a href="#801" id="801">801</a>
 <a href="#802" id="802">802</a>
+<a href="#803" id="803">803</a>
+<a href="#804" id="804">804</a>
 </pre><pre class="rust"><code><span class="kw">use </span>std::collections::{BTreeMap, BTreeSet, HashMap};
 <span class="kw">use </span>std::net::SocketAddr;
 <span class="kw">use </span>std::time::Duration;
@@ -828,9 +830,11 @@
 <span class="kw">use </span>url::Url;
 
 <span class="kw">use </span><span class="kw">crate</span>::fedimint_api::encoding::Encodable;
-<span class="kw">use </span><span class="kw">crate</span>::fedimint_api::{BitcoinHash, NumPeers};
+<span class="kw">use </span><span class="kw">crate</span>::fedimint_api::BitcoinHash;
+<span class="kw">use </span><span class="kw">crate</span>::fedimint_api::NumPeers;
 <span class="kw">use </span><span class="kw">crate</span>::logging::{LOG_NET_PEER, LOG_NET_PEER_DKG};
-<span class="kw">use </span><span class="kw">crate</span>::net::connect::{parse_host_port, Connector, TlsConfig};
+<span class="kw">use </span><span class="kw">crate</span>::net::connect::TlsConfig;
+<span class="kw">use </span><span class="kw">crate</span>::net::connect::{parse_host_port, Connector};
 <span class="kw">use </span><span class="kw">crate</span>::net::peers::NetworkConfig;
 <span class="kw">use crate</span>::{ReconnectPeerConnections, TlsTcpConnector};
 

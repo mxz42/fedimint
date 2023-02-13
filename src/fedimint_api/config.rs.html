@@ -1087,6 +1087,11 @@
 <a href="#1087" id="1087">1087</a>
 <a href="#1088" id="1088">1088</a>
 <a href="#1089" id="1089">1089</a>
+<a href="#1090" id="1090">1090</a>
+<a href="#1091" id="1091">1091</a>
+<a href="#1092" id="1092">1092</a>
+<a href="#1093" id="1093">1093</a>
+<a href="#1094" id="1094">1094</a>
 </pre><pre class="rust"><code><span class="kw">use </span>std::collections::{BTreeMap, HashMap};
 <span class="kw">use </span>std::fmt::Debug;
 <span class="kw">use </span>std::hash::Hash;
@@ -1094,17 +1099,21 @@
 <span class="kw">use </span>std::ops::Mul;
 <span class="kw">use </span>std::str::FromStr;
 
-<span class="kw">use </span>anyhow::{bail, ensure, format_err};
+<span class="kw">use </span>anyhow::format_err;
+<span class="kw">use </span>anyhow::{bail, ensure};
 <span class="kw">use </span>bitcoin::secp256k1;
+<span class="kw">use </span>bitcoin_hashes::hex;
 <span class="kw">use </span>bitcoin_hashes::hex::{FromHex, ToHex};
-<span class="kw">use </span>bitcoin_hashes::sha256::{Hash <span class="kw">as </span>Sha256, HashEngine};
-<span class="kw">use </span>bitcoin_hashes::{hex, sha256};
+<span class="kw">use </span>bitcoin_hashes::sha256;
+<span class="kw">use </span>bitcoin_hashes::sha256::Hash <span class="kw">as </span>Sha256;
+<span class="kw">use </span>bitcoin_hashes::sha256::HashEngine;
 <span class="kw">use </span>fedimint_api::core::{
     ModuleInstanceId, ModuleKind, LEGACY_HARDCODED_INSTANCE_ID_LN,
     LEGACY_HARDCODED_INSTANCE_ID_MINT, LEGACY_HARDCODED_INSTANCE_ID_WALLET,
 };
 <span class="kw">use </span>fedimint_api::{BitcoinHash, Encodable, ModuleDecoderRegistry};
-<span class="kw">use </span>hbbft::crypto::group::{Curve, GroupEncoding};
+<span class="kw">use </span>hbbft::crypto::group::Curve;
+<span class="kw">use </span>hbbft::crypto::group::GroupEncoding;
 <span class="kw">use </span>hbbft::crypto::poly::Commitment;
 <span class="kw">use </span>hbbft::crypto::{G1Projective, G2Projective, PublicKeySet, SecretKeyShare};
 <span class="kw">use </span>hbbft::pairing::group::Group;
@@ -1113,7 +1122,8 @@
 <span class="kw">use </span>serde::{Deserialize, Deserializer, Serialize, Serializer};
 <span class="kw">use </span>tbs::hash::hash_bytes_to_curve;
 <span class="kw">use </span>tbs::poly::Poly;
-<span class="kw">use </span>tbs::{serde_impl, Scalar};
+<span class="kw">use </span>tbs::serde_impl;
+<span class="kw">use </span>tbs::Scalar;
 <span class="kw">use </span>threshold_crypto::serde_impl::SerdeSecret;
 <span class="kw">use </span>threshold_crypto::Signature;
 <span class="kw">use </span>url::Url;
